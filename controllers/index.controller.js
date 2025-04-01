@@ -1,5 +1,6 @@
 const SubjectsModel = require("../models");
 const { uploadFile } = require("../services/file.service");
+const { validatePayload } = require("../utils/validate");
 
 const subjectController = {
   /**
@@ -61,6 +62,10 @@ const subjectController = {
      * Bước 2: Thực hiện thêm subject vào table Subject bằng method addSubject của SubjectModel mà ta đã tạo
      * Bước 3: Trả về thông tin của subject đã thêm
      */
+    const errors = validatePayload(req.body);
+    if (errors) {
+      res.send(errors.join(", "));
+    }
     try {
       const { name, type } = req.body; // lấy thông tin subject từ body của request
 
@@ -107,6 +112,10 @@ const subjectController = {
    */
   updateSubject: async (req, res) => {
     console.log("update subject::", req.body);
+    const errors = validateUpdate(req.body);
+    if (errors) {
+      res.send(errors.join(", "));
+    }
     const id = req.params.id; // lấy id từ params của request
     const { name, type } = req.body; // lấy thông tin subject từ body của request
     const image = req?.file;
@@ -121,7 +130,7 @@ const subjectController = {
     if (!subject) {
       return res.status(404).json({ message: "Subject not found" }); // nếu không tìm thấy subject thì trả về lỗi 404
     }
-    res.redirect("/subjects"); // trả về thông tin của subject đã cập nhật
+    res.redirect("/subjects"); // trả về thông tin của subject đã cập  nhật
   },
 };
 

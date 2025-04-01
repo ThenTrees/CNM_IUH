@@ -13,5 +13,5 @@ app.set("views", "./views");
 app.use("/", require("./routes/index"));
 
 app.listen(3000, () => {
-  console.log("Server started on htpp://localhost:3000/");
+  console.log("Server started on http://localhost:3000/");
 });

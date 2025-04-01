@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Detail</title>
+</head>
+
+<body>
+    <form action="/subjects/update/<%= subject.id %>" method="post" enctype="multipart/form-data">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" value="<%= subject.name %>" required><br>
+        <label for="type">Type:</label><br>
+        <input type="text" id="type" name="type" value="<%= subject.type %>" required><br>
+        <label for="image">Image:</label><br>
+        <input type="hidden" name="image" value="<%= subject.image %>">
+        <img src="<%= subject.image %>" alt="Image" width="100" height="100"><br>
+        <input type="file" id="image" name="image"><br>
+        <button class="btn btn-secondary" type="submit">Update</button>
+    </form>
+</body>
+
+</html>
